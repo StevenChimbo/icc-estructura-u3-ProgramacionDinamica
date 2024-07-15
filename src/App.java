@@ -1,7 +1,11 @@
+import Ejercicios.contorllers.Laberinto;
+import Ejercicios.models.Celda;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class App {
+    private static boolean[][] grid;
     public static void main(String[] args) throws Exception {
         System.out.println("Programación Dinámica");
 
@@ -27,8 +31,23 @@ public class App {
             "Time taken: %.9f segundos",
              (endtime-startime)/1_000_000_000.0);
 
-        /// Ejericio 1
-        // runEjercicio();
+        /// Ejericios laberinto
+        grid = new boolean[][] {
+            {true, true, true, true},
+            {false, false, false, true},
+            {true, true, false, true},
+            {true, true, false, true}
+        };
+
+        // Ejecutar el ejercicio con el laberinto generado
+        runEjercicio();  
+        Laberinto laberinto = new Laberinto();
+        List<Celda> path = laberinto.getPath(grid);
+        System.out.println("Camino encontrado en el laberinto:");
+        for (int i = path.size() - 1; i >= 0; i--) {
+            System.out.print(path.get(i) + (i > 0? " -> " : "\n"));
+        }
+        
 
     }
 
@@ -81,7 +100,8 @@ public class App {
         cache[n] = fibonacciArreglo(n-1, cache)+fibonacciArreglo(n-2,cache);
         return cache [n];
     }
-
+    
+    
     public static void  runEjercicio() {
 
         // boolean[][] grid = {
@@ -92,4 +112,5 @@ public class App {
         // };
 
     }
+    
 }
